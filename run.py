@@ -1,16 +1,10 @@
-from activateSession import SessionActivator
-from controlBrowser import BrowserController
-
-
-
-
-
-
-
+from wikifolioPy import WikifolioPy
 
 if __name__ == '__main__':
-    s = SessionActivator()
-    s.activateSession()
-    b = BrowserController()
-    b.login()
-    b.logout()
+    '''Only relevant parameter is the url to wikifolio'''
+    
+    url = 'DummyURL'
+    
+    w = WikifolioPy(url)
+    w.login()
+    w.logout()

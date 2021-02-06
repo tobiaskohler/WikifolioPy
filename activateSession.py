@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3
-
 #This module logs into wikifolio.com and  retrieves an active requests.session. The session object allows you to persist certain parameters across requests (like e.g. the connectionToken, if a websocket connection shall be established). It also persists cookies across all requests. 
 
 import requests

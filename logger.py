@@ -1,8 +1,5 @@
-#!/usr/local/bin/python3
-
 import logging
 from datetime import datetime
-import smtplib
 
 class CPrint:
 
@@ -32,5 +29,5 @@ filename = f'logs/{today}.log'
 logging.basicConfig(filename=filename, filemode='a', format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s', datefmt='%H:%M:%S', level=logging.DEBUG)
 
 # create logger
-logger = logging.getLogger("SHODAN")
+logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

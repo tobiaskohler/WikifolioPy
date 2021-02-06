@@ -1,6 +1,6 @@
 #Simple config file. Put your USR and PWD into environment variables named WIKIFOLIO_USR and WIKIFOLIO_PWD
 #Returns a dictionary with credentials
-
+from logger import logger, CPrint
 import os
 
 def credentials():
@@ -8,13 +8,17 @@ def credentials():
 
     USR = os.getenv('WIKIFOLIO_USR')
     PWD = os.getenv('WIKIFOLIO_PWD')
+    
+    if USR==None and PWD==None:
+        USR: str = input('Please provide your Wikifolio email address: ')
+        PWD: str = input('Please provide your Wikifolio password: ')
 
-    #URL to your wikifolio
-    WIKI = 'url'
+    cre = {'USR': USR, 'PWD': PWD} 
+    credentialMsg = f'Your Wikifolio email is set to: {USR}, your password to: {PWD}'
+    CPrint.color('g', credentialMsg) 
+    return cre
 
-
-    credentials = {'USR': USR, 'PWD': PWD, 'WIKI': WIKI} 
-    return credentials
-
-if __name__ == 'main':
+if __name__ == '__main__':
+    CPrint.color('i', 'Testing module credentials...')
     credentials()
+    CPrint.color('i', 'Finished testing!')

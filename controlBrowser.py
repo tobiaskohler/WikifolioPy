@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3
-
 #This module operates the headless browsers (Firefox). Contains a lot of FRAGILE HTML references. Needs to be up to date with current, external code.
 
 from logger import logger, CPrint
