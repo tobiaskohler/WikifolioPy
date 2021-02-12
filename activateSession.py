@@ -7,9 +7,10 @@ from logger import logger, CPrint
 
 
 class SessionActivator():
+    '''Class to be instantiated to have an active wikifolio session enabled'''
 
     def __init__(self):
-        
+
         cre = credentials()
         self.usr = cre['USR']
         self.pwd = cre['PWD']
