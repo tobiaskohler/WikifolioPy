@@ -23,9 +23,9 @@ class WikifolioPy:
     def __init__(self, symbol):
         self.symbol = symbol 
         self.credentials = credentials()
-        self.browserController = BrowserController()
+        self.browserController = BrowserController(self.credentials)
         self.checkAccountBalance = CheckAccountBalance(self.symbol)
-        self.s = SessionActivator().activateSession()
+        self.s = SessionActivator(self.credentials).activateSession()
         self.session = self.s['session']
         self.connectionToken = self.s['connectionToken']
 

@@ -22,13 +22,12 @@ class CheckAccountBalance():
 
     def check_balance(self, session):
         
-        m1_start = "Checking Account balance..."
+        m1_start = f'Checking Account balance for {self.url} ...'
         CPrint.color('n', m1_start)
         logger.info(m1_start)
 
         try:
             
-            CPrint.color('n', f'Calling {self.url}')
             r = session.get(self.url).text
             content = BeautifulSoup(r,'xml')
 
@@ -70,7 +69,9 @@ class CheckAccountBalance():
 if __name__ == "__main__":
     symbol = 'WFNEBENWEU'
     from activateSession import SessionActivator
-    sessionActivator = SessionActivator()
+    from credentials import credentials
+    cre = credentials()
+    sessionActivator = SessionActivator(cre)
     returnValue = sessionActivator.activateSession()
 
     session = returnValue['session']

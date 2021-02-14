@@ -9,11 +9,11 @@ from logger import logger, CPrint
 class SessionActivator():
     '''Class to be instantiated to have an active wikifolio session enabled'''
 
-    def __init__(self):
+    def __init__(self, credentials):
 
-        cre = credentials()
-        self.usr = cre['USR']
-        self.pwd = cre['PWD']
+        self.credentials = credentials
+        self.usr = self.credentials['USR']
+        self.pwd = self.credentials['PWD']
         self.s = requests.Session()
         self.loginUrl = 'https://www.wikifolio.com/dynamic/de/de/login/login/'
         self.headers = {'useragent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:83.0) Gecko/20100101 Firefox/83.0'}
@@ -42,12 +42,7 @@ class SessionActivator():
         connectionTokenContext = self.s.get(connectionTokenUrl, headers=self.headers).text
         connectionTokenRaw = connectionTokenContext.split(":")
         connectionToken = str(connectionTokenRaw[2].split(",")[0].strip())
-        connectionTokenMsg = f'Successfully identified the connection Token: {connectionToken}' 
-
-        CPrint.color('g', connectionTokenMsg)
-        logger.info(connectionTokenMsg)
-
-
+        
         returnValue = {
             'session': self.s,
             'connectionToken': connectionToken
