@@ -1,10 +1,11 @@
 from wikifolioPy import WikifolioPy
 
 if __name__ == '__main__':
-    '''Only relevant parameter is the url to wikifolio'''
+    '''Only relevant parameter is the symbol of the  wikifolio'''
     
-    url = 'DummyURL'
+    symbol = 'WF0GLDIVST'
     
-    w = WikifolioPy(url)
+    w = WikifolioPy(symbol)
     w.login()
     w.logout()
+    w.get_cash_amount()

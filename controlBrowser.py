@@ -3,6 +3,7 @@
 from logger import logger, CPrint
 import time
 from credentials import credentials
+from Dom import dom
 import random
 
 from selenium import webdriver
@@ -25,11 +26,12 @@ class BrowserController():
         self.options.headless = True 
         self.driver = webdriver.Firefox(executable_path=self.executablePath, firefox_binary=self.binary, options=self.options)
         self.actions = ActionChains(self.driver)
+        self.dom = dom()
 
         self.credentials = credentials()
         initMsg = f"Initialized Browser (Geckodriver-Path: {self.executablePath}, given Wikifolio-User: {self.credentials['USR']})"
         logger.info(initMsg)
-        CPrint.color('g', initMsg)
+        CPrint.color('n', initMsg)
 
     def move_mouse_to_random_position(self,driver):
 
@@ -56,15 +58,15 @@ class BrowserController():
 
             self.move_mouse_to_random_position(self.driver)
 
-            einverstandenButton = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div.c-button--bold')))
+            einverstandenButton = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.dom['einverstandenButton'])))
             einverstandenButton.click()
 
             time.sleep(2)
 
-            loginButton = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "html/body/div[3]/header/div/div/div/div[2]/button/span")))
+            loginButton = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.dom['loginButton'])))
             loginButton.click()
 
-            usernameInput = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, "Username")))
+            usernameInput = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, self.dom['usernameInput'])))
             usernameInput.send_keys(self.credentials['USR'])
 
             self.actions.send_keys(Keys.TAB)
