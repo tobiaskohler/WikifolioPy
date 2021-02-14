@@ -31,7 +31,7 @@ class BrowserController():
         self.credentials = credentials()
         initMsg = f"Initialized Browser (Geckodriver-Path: {self.executablePath}, given Wikifolio-User: {self.credentials['USR']})"
         logger.info(initMsg)
-        CPrint.color('g', initMsg)
+        CPrint.color('n', initMsg)
 
     def move_mouse_to_random_position(self,driver):
 

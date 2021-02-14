@@ -17,38 +17,48 @@ class CheckAccountBalance():
         self.filename = Path(f'daily_trades/{self.todays_date}')
         Path('daily_trades').mkdir(parents=True, exist_ok=True)
         self.symbol = symbol
-        self.url = 'https://www.wikifolio.com/api/wikifolio/{symbol}/portfolio'
+        self.url = f'https://www.wikifolio.com/api/wikifolio/{symbol}/portfolio'
 
 
     def check_balance(self, session):
         
         m1_start = "Checking Account balance..."
-        CPrint.color('i', m1_start)
+        CPrint.color('n', m1_start)
         logger.info(m1_start)
 
         try:
-
+            
+            CPrint.color('n', f'Calling {self.url}')
             r = session.get(self.url).text
-            print(r)
             content = BeautifulSoup(r,'xml')
-            print(content)
-            tag = str(content.findAll('TotalValue'))
-            print(tag)
-            x = tag.split('>')[-2:][0].split("<")[0]
-            print(x)
-            amount = float(x)
+
+            #find Portfolio's Total Value (typically last Element of XML tree)
+            totalValue = str(content.findAll('TotalValue'))
+            x = totalValue.split('>')[-2:][0].split("<")[0]
+            totalValueFloat = float(x)
+
+            #find Portfolios free available Cash (last element before Total Value)
+            cashValue = str(content.findAll('Value')[-1])
+            y = cashValue.split('>')[-2:][0].split("<")[0]
+            totalValueCashFloat = float(y)
 
             datum = datetime.today().astimezone()
 
+            values = {}
+            values['total'] = totalValueFloat 
+            values['cash'] = totalValueCashFloat 
+
             #databaseHandling.appendTableWithPortfolioValue([[datum], [amount]])
 
-            messageText = f"Current available cash amount written to database"
-            logger.info(messageText)
-            CPrint.color('i', messageText)
+            totalValueFloatText = f'Total portfolio value: {totalValueFloat} EUR.'
+            logger.info(totalValueFloatText)
+            CPrint.color('g', totalValueFloatText)
 
-            m1_end = f'Available Cash balance: {amount}' 
-            CPrint.color('g', m1_end)
-            logger.info(m1_end)
+            totalValueCashFloatText = f'Free cash amount: {totalValueCashFloat} EUR.'
+            logger.info(totalValueCashFloatText)
+            CPrint.color('g', totalValueCashFloatText)
+
+            return values
 
 
         except Exception as e:
@@ -58,17 +68,15 @@ class CheckAccountBalance():
 
 
 if __name__ == "__main__":
-    symbol = 'wf0gldivst'
+    symbol = 'WFNEBENWEU'
     from activateSession import SessionActivator
     sessionActivator = SessionActivator()
     returnValue = sessionActivator.activateSession()
 
     session = returnValue['session']
 
-
-
-
     CPrint.color('i', "Testing module checkAccountBalance...")
     accountBalanceChecker = CheckAccountBalance(symbol) 
     accountBalanceChecker.check_balance(session) 
     CPrint.color('i', "Finished testing checkAccountBalance!")
+

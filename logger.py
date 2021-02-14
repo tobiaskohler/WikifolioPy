@@ -10,6 +10,7 @@ class CPrint:
     green = '\033[92m'
     red = '\033[91m'
     end = '\033[0m'
+    normal = '\033[0;30;47m'
 
     def color(color, string):
         string = str(string)
@@ -19,6 +20,8 @@ class CPrint:
             print(f'{CPrint.current_time} {CPrint.red}' + string + f'{CPrint.end}')
         elif color == 'i':
             print(f'{CPrint.current_time} {CPrint.info}' + string + f'{CPrint.end}')
+        elif color == 'n':
+            print(f'{CPrint.current_time} {CPrint.normal}' + string + f'{CPrint.end}')
         else:
             print(string)
 

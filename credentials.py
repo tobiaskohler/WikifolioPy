@@ -15,7 +15,7 @@ def credentials():
 
     cre = {'USR': USR, 'PWD': PWD} 
     credentialMsg = f'Your Wikifolio email is set to: {USR}, your password to: {PWD}'
-    CPrint.color('g', credentialMsg) 
+    CPrint.color('n', credentialMsg) 
     return cre
 
 if __name__ == '__main__':
