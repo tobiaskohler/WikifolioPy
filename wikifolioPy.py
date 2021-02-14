@@ -1,6 +1,6 @@
 
 #WikifolioPy imports all submodules and calls them within its own methods. This is to allow a more conventient use of the bot.
-
+from credentials import credentials
 from activateSession import SessionActivator
 from controlBrowser import BrowserController
 from checkAccountBalance import CheckAccountBalance
@@ -20,10 +20,11 @@ class WikifolioPy:
 
     '''
 
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, symbol):
+        self.symbol = symbol 
+        self.credentials = credentials()
         self.browserController = BrowserController()
-        self.checkAccountBalance = CheckAccountBalance(self.url)
+        self.checkAccountBalance = CheckAccountBalance(self.symbol)
         self.s = SessionActivator().activateSession()
         self.session = self.s['session']
         self.connectionToken = self.s['connectionToken']

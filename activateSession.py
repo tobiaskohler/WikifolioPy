@@ -36,9 +36,6 @@ class SessionActivator():
 
         logger.info(f"Successfully identified all relevant parameters: {payload['__RequestVerificationToken']}, {payload['ufprt']}")
         self.s.post(self.loginUrl, headers=self.headers, data=payload)
-        successMsg = 'Login successfull!'
-        CPrint.color('g', successMsg)
-        logger.info(successMsg)
 
         ##ConnectionToken only necessary for Websockets:
         connectionTokenUrl='https://www.wikifolio.com/de/de/signalr/negotiate'

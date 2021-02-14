@@ -13,8 +13,10 @@ def credentials():
         USR: str = input('Please provide your Wikifolio email address: ')
         PWD: str = input('Please provide your Wikifolio password: ')
 
+    USR_STR = USR[:-7] + '*******' 
+    PWD_STR = PWD[:-4] + '****' 
     cre = {'USR': USR, 'PWD': PWD} 
-    credentialMsg = f'Your Wikifolio email is set to: {USR}, your password to: {PWD}'
+    credentialMsg = f'Your Wikifolio email is set to: {USR_STR}, your password to: {PWD_STR}'
     CPrint.color('n', credentialMsg) 
     return cre
 
