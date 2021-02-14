@@ -19,7 +19,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 class BrowserController():
 
-    def __init__(self):
+    def __init__(self, credentials):
         self.binary = FirefoxBinary('/Applications/Firefox.app/Contents/MacOS/firefox-bin')
         self.executablePath = '/usr/local/Cellar/geckodriver/0.28.0/bin/geckodriver'
         self.options = Options()
@@ -28,10 +28,9 @@ class BrowserController():
         self.actions = ActionChains(self.driver)
         self.dom = dom()
 
-        self.credentials = credentials()
+        self.credentials = credentials
         initMsg = f"Initialized Browser (Geckodriver-Path: {self.executablePath}, given Wikifolio-User: {self.credentials['USR']})"
         logger.info(initMsg)
-        CPrint.color('n', initMsg)
 
     def move_mouse_to_random_position(self,driver):
 
@@ -81,7 +80,7 @@ class BrowserController():
             self.actions.perform()
             self.actions.reset_actions()
             
-            loginMsg = "Log in successful"
+            loginMsg = "Log in successful!"
             logger.info(loginMsg)
             CPrint.color('g', loginMsg)
 
@@ -107,8 +106,10 @@ class BrowserController():
     
 
 if __name__ == "__main__":
+    from credentials import credentials
+    cre = credentials()
     CPrint.color('i', "Testing module controlBrowser...")
-    controlBrowser = BrowserController()
+    controlBrowser = BrowserController(cre)
     controlBrowser.login()
     time.sleep(3)
     controlBrowser.logout()
