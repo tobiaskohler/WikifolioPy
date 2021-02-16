@@ -19,7 +19,7 @@ At the moment, the following features are implemented:
     - Portfolio's Total Value in EUR
     - Total available Cash Value in EUR
     
-    *Remark: you do not need to be logged in to use this functionality. Hence, it's posibble to retrieve both values from any public wikifolio*
+    *Remark: you do not need to be logged in to use this functionality. Hence, it's possible to retrieve both values from any public wikifolio*
 
 ## ⌛ What needs to be implemented? ##
 
