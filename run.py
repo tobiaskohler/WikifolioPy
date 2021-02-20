@@ -4,7 +4,7 @@ from wikifolioPy import WikifolioPy
 if __name__ == '__main__':
     '''Only relevant parameter is the symbol of the  wikifolio'''
     
-    symbol = 'WF0GLDIVST'
+    symbol = 'WFNEBENWEU'
    
 
     CPrint.color('i', 'Starting WikifolioPy...')
@@ -12,4 +12,5 @@ if __name__ == '__main__':
     w.login()
     w.logout()
     w.get_cash_amount()
+    w.get_portfolio_items()
     CPrint.color('i', 'Finished!')

@@ -3,7 +3,7 @@
 from credentials import credentials
 from activateSession import SessionActivator
 from controlBrowser import BrowserController
-from checkAccountBalance import CheckAccountBalance
+from checkWikifolio import CheckWikifolio
 
 
 class WikifolioPy:
@@ -23,11 +23,11 @@ class WikifolioPy:
     def __init__(self, symbol):
         self.symbol = symbol 
         self.credentials = credentials()
-        self.browserController = BrowserController(self.credentials)
-        self.checkAccountBalance = CheckAccountBalance(self.symbol)
         self.s = SessionActivator(self.credentials).activateSession()
         self.session = self.s['session']
         self.connectionToken = self.s['connectionToken']
+        self.browserController = BrowserController(self.credentials)
+        self.checkWikifolio = CheckWikifolio(self.session, self.symbol)
 
     def login(self):
         self.browserController.login()
@@ -36,10 +36,10 @@ class WikifolioPy:
         self.browserController.logout()
 
     def get_portfolio_items(self):
-        return None
+        self.checkWikifolio.get_items()
 
     def get_cash_amount(self):
-        self.checkAccountBalance.check_balance(self.session) 
+        self.checkWikifolio.check_balance() 
 
     def enter_order(self):
         return None
