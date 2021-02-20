@@ -23,6 +23,7 @@ class CheckWikifolio():
 
 
     def check_balance(self):
+        '''returns a dictionary "values", containing both the total Portfolio Amount and the free available cash amount'''
         
         m1_start = f'Checking Account balance for {self.url} ...'
         CPrint.color('n', m1_start)
@@ -68,7 +69,8 @@ class CheckWikifolio():
             logger.info(f'Error: {e}')
 
     def get_items(self):
-        
+        '''returns a dictionary containing all portfolio items (ISIN: QUANTITY)''' 
+
         m1_start = f'Scanning current Portfolio items for {self.url}...'
         CPrint.color('n', m1_start)
         logger.info(m1_start)

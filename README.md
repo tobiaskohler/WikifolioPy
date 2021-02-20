@@ -11,7 +11,7 @@
 
 
 ## ✅ What is implemented? ##
-At the moment, the following features are implemented:
+Currently, the following features are implemented:
 
  * **Login/Logout** - automated login/out from your Wikifolio account
  
@@ -20,14 +20,16 @@ At the moment, the following features are implemented:
     - Total available Cash Value in EUR
     
     *Remark: you do not need to be logged in to use this functionality. Hence, it's possible to retrieve both values from any public wikifolio*
+    
+* **Retrieve Portfolio Items** - function to retrieve all instruments in portfolio
+
 
 ## ⌛ What needs to be implemented? ##
-
-* **Retrieve Portfolio Items** - function to retrieve all instruments in portfolio
 
 * **AddOrderMarket** - function to add a Market Order
 
 * **AddOrderLimit** - function to add a Limit Order
+
 
 
 
