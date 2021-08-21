@@ -1,4 +1,5 @@
 import logging
+import pathlib
 from datetime import datetime
 
 class CPrint:
@@ -25,6 +26,8 @@ class CPrint:
         else:
             print(string)
 
+# create logs folder
+pathlib.Path('logs').mkdir(parents=True, exist_ok=True) 
 
 today = datetime.now().strftime('%Y-%m-%d')
 filename = f'logs/{today}.log'
